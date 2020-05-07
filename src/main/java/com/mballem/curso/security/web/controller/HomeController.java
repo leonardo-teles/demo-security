@@ -24,7 +24,7 @@ public class HomeController {
 	public String loginError(ModelMap model) {
 		model.addAttribute("alerta", "erro");
 		model.addAttribute("titulo", "Credenciais inválidas!");
-		model.addAttribute("text", "Login ou senha incorrettos, tente novamente.");
+		model.addAttribute("text", "Login ou senha incorretos, tente novamente.");
 		model.addAttribute("subtexto", "Acesso permitido apenas para cadastros já ativados");
 		
 		return "login";
