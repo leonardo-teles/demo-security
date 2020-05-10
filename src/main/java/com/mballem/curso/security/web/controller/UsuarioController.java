@@ -77,7 +77,7 @@ public class UsuarioController {
 	@GetMapping("/editar/dados/usuario/{id}/perfis/{perfis}")
 	public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long usuarioId,
 													   @PathVariable("perfis") Long[] perfisId) {
-		Usuario usu = new Usuario();
+		Usuario usu = service.buscarPorIdEPerfis(usuarioId, perfisId);
 		
 		if (usu.getPerfis().contains(new Perfil(PerfilTipo.ADMIN.getCod())) &&
 			!usu.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod()))) {
