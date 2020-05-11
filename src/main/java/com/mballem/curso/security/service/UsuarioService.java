@@ -61,7 +61,7 @@ public class UsuarioService implements UserDetailsService {
 		datatables.setColunas(DatatablesColunas.USUARIOS);
 		Page<Usuario> page = datatables.getSearch().isEmpty()
 				? repository.findAll(datatables.getPageable())
-				: repository.findByEmailOrPerfil(datatables.getSearch(), datatables.getSearch(), datatables.getPageable());
+				: repository.findByEmailOrPerfil(datatables.getSearch(), datatables.getPageable());
 		
 		return datatables.getResponse(page);
 	}
