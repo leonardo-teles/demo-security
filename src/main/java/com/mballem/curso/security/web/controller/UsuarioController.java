@@ -93,7 +93,9 @@ public class UsuarioController {
 			
 			Medico medico = medicoService.buscarPorusuarioId(usuarioId);
 			
-			return new ModelAndView("especialidade/especialidade");
+			return medico.hasNotId()
+					? new ModelAndView("medico/cadastro", "medico", new Medico(new Usuario(usuarioId)))
+					: new ModelAndView("medico/cadastro", "medico", medico);
 			
 		} else if(usu.getPerfis().contains(new Perfil(PerfilTipo.PACIENTE.getCod()))) {
 			ModelAndView model = new ModelAndView("error");
