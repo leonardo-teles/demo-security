@@ -1,5 +1,7 @@
 package com.mballem.curso.security.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,9 +23,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 			+ "OR p.desc like :desc%")
 	Page<Usuario> findByEmailOrPerfil(@Param("desc") String desc, Pageable pageable);
 
-	@Query("select distinct u from Usuario u "
+	@Query("select u from Usuario u "
 			+ "join u.perfis p "
 			+ "where u.id = :usuarioId "
 			+ "AND p.id IN :perfisId")
-	Usuario findByIdAndPerfis(Long usuarioId, Long[] perfisId);
+	Optional<Usuario> findByIdAndPerfis(@Param("usuarioId") Long usuarioId, @Param("perfisId") Long[] perfisId);
 }

@@ -81,9 +81,13 @@ public class UsuarioController {
 		
 		if (usu.getPerfis().contains(new Perfil(PerfilTipo.ADMIN.getCod())) &&
 			!usu.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod()))) {
+			
 			return new ModelAndView("usuario/cadastro", "usuario", usu);
+			
 		} else if(usu.getPerfis().contains(new Perfil(PerfilTipo.MEDICO.getCod()))) {
+			
 			return new ModelAndView("especialidade/especialidade");
+			
 		} else if(usu.getPerfis().contains(new Perfil(PerfilTipo.PACIENTE.getCod()))) {
 			ModelAndView model = new ModelAndView("error");
 			
