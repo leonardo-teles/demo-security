@@ -34,4 +34,9 @@ public class MedicoService {
 			m2.getEspecialidades().addAll(medico.getEspecialidades());
 		}
 	}
+
+	@Transactional(readOnly = true)
+	public Medico buscarPorEmail(String email) {
+		return repository.findByUsuarioEmail(email).orElse(new Medico());
+	}
 }
