@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/medicos/**").hasAuthority(MEDICO)
 			
 			// acesso privado especialidades
+			.antMatchers("/especialidades/titulo").hasAnyAuthority(MEDICO, ADMIN)
 			.antMatchers("/especialidades/**").hasAuthority(ADMIN)
 
 			// acesso privado pacientes
