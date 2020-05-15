@@ -24,4 +24,9 @@ public interface EspecialidadeRepository extends JpaRepository<Especialidade, Lo
 	@Query("select e from Especialidade e where e.titulo IN :titulos")
 	Set<Especialidade> findByTitulos(@Param("titulos") String[] titulos);
 
+	@Query("select e from Especialidade e "
+			+ "join e.medicos m "
+			+ "where m.id = :id")
+	Page<Especialidade> findByIdMedico(@Param("id")Long id, Pageable pageable);
+
 }
