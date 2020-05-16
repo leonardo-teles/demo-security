@@ -10,7 +10,7 @@ import com.mballem.curso.security.domain.Agendamento;
 @RequestMapping("agendamentos")
 public class AgendamentoController {
 
-	@GetMapping("{/agendar}")
+	@GetMapping({"/agendar"})
 	public String agendarConsulta(Agendamento agendamento) {
 		return "agendamento/cadastro";
 	}
