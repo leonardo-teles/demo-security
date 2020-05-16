@@ -14,7 +14,7 @@ public class PacienteService {
 	private PacienteRepository repository;
 	
 	@Transactional(readOnly = true)
-	public Paciente buscarPorUsuarioEmail(String email) {
+	public Paciente buscarPorEmail(String email) {
 		return repository.findByUsuarioEmail(email).orElse(new Paciente());
 	}
 

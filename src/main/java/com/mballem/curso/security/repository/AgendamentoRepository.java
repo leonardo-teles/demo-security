@@ -12,7 +12,7 @@ import com.mballem.curso.security.domain.Agendamento;
 import com.mballem.curso.security.domain.Horario;
 
 @Repository
-public interface AgendamentoRepositoty extends JpaRepository<Agendamento, Long> {
+public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 
 	@Query("select h from Horario h "
 			+ "where not exists("

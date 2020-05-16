@@ -27,7 +27,7 @@ public class PacienteController {
 	// abrir página de dados pessoais do paciente
 	@GetMapping("/dados")
 	public String cadastrar(Paciente paciente, ModelMap map, @AuthenticationPrincipal User user) {
-		paciente = service.buscarPorUsuarioEmail(user.getUsername());
+		paciente = service.buscarPorEmail(user.getUsername());
 		if (paciente.hasNotId()) {
 			paciente.setUsuario(new Usuario(user.getUsername()));
 		}
@@ -36,7 +36,7 @@ public class PacienteController {
 		return "paciente/cadastro";
 	}
 	
-	// salvar o form de dados pessoai do paciente com verificação de senha
+	// salvar o form de dados pessoais do paciente com verificação de senha
 	@PostMapping("/salvar")
 	public String salvar(Paciente paciente, ModelMap map, @AuthenticationPrincipal User user) {
 		Usuario u = usuarioService.buscarPorEmail(user.getUsername());
@@ -51,7 +51,7 @@ public class PacienteController {
 		return "paciente/cadastro";
 	}
 	
-	// editar o form de dados pessoai do paciente com verificação de senha
+	// editar o form de dados pessoais do paciente com verificação de senha
 	@PostMapping("/editar")
 	public String editar(Paciente paciente, ModelMap map, @AuthenticationPrincipal User user) {
 		Usuario u = usuarioService.buscarPorEmail(user.getUsername());
