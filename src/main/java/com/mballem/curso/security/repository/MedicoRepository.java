@@ -24,4 +24,10 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
 			+ "where e.titulo like :titulo "
 			+ "and m.usuario.ativo = true")
 	List<Medico> findByMedicosPorEspecialidade(@Param("titulo") String titulo);
+
+	@Query("select m.id from Medico m "
+			+ "join m.especialidades e "
+			+ "join m.agendamentos a "
+			+ "where a.especialidade.id = :idEsp AND a.medico.id = :idMed")
+	Optional<Long> hasEspecialidadeAgendada(@Param("idMed") Long idMed, @Param("idEsp") Long idEsp);
 }
