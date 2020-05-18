@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class AgendamentoController {
 	@Autowired
 	private EspecialidadeService especialidadeService;
 	
+	// abre a página de agendamento de consultas
 	@GetMapping({"/agendar"})
 	public String agendarConsulta(Agendamento agendamento) {
 		return "agendamento/cadastro";
@@ -86,5 +88,39 @@ public class AgendamentoController {
 		
 		return ResponseEntity.notFound().build();
 	}
+	
+	// localizar agendamento pelo id e enviá-lo para a página de cadastro
+	@GetMapping("/editar/consulta/{id}")
+	public String preEditarConsultaPaciente(@PathVariable("id") Long id, ModelMap map, @AuthenticationPrincipal User user) {
+		Agendamento agendamento = service.buscarPorId(id);
+		map.addAttribute("agendamento", agendamento);
+		
+		return "agendamento/cadastro";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
