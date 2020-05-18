@@ -2,6 +2,7 @@ package com.mballem.curso.security.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,7 +40,7 @@ public class UsuarioService implements UserDetailsService {
 
 	@Override @Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = buscarPorEmail(username);
+		Usuario usuario = buscarPorEmailEAtivo(username).orElseThrow(() -> new UsernameNotFoundException("Usuário " + username + " não encontrado."));
 		
 		return new User(
 			usuario.getEmail(),
@@ -102,5 +103,10 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setSenha(crypt);
 		usuario.addPerfil(PerfilTipo.PACIENTE);
 		repository.save(usuario);
+	}
+	
+	@Transactional(readOnly = true)
+	public Optional<Usuario> buscarPorEmailEAtivo(String email) {
+		return repository.findByEmailAndAtivo(email);
 	}
 }
