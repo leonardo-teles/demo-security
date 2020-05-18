@@ -74,6 +74,7 @@ public class AgendamentoController {
 	}
 	
 	// localizar o histórico de agendamentos por usuário logado
+	@GetMapping("/datatables/server/historico")
 	public ResponseEntity<?> historicoAgendamentosPorPaciente(HttpServletRequest request, @AuthenticationPrincipal User user) {
 		if (user.getAuthorities().contains(new SimpleGrantedAuthority(PerfilTipo.PACIENTE.getDesc()))) {
 			return ResponseEntity.ok(service.buscarHistoricoPorPacienteEmail(user.getUsername(), request));
