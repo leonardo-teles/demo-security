@@ -92,7 +92,7 @@ public class AgendamentoController {
 	// localizar agendamento pelo id e enviá-lo para a página de cadastro
 	@GetMapping("/editar/consulta/{id}")
 	public String preEditarConsultaPaciente(@PathVariable("id") Long id, ModelMap map, @AuthenticationPrincipal User user) {
-		Agendamento agendamento = service.buscarPorId(id);
+		Agendamento agendamento = service.buscarPorIdEUsuario(id, user.getUsername());
 		map.addAttribute("agendamento", agendamento);
 		
 		return "agendamento/cadastro";
@@ -112,29 +112,3 @@ public class AgendamentoController {
 		return "redirect:/agendamentos/agendar";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
