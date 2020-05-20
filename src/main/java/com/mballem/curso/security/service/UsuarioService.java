@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -131,5 +132,17 @@ public class UsuarioService implements UserDetailsService {
 			throw new AcessoNegadoException("Não foi possível ativar seu cadastro. Entre em contato com o suporte.");
 		}
 		usuario.setAtivo(true);
+	}
+
+	@Transactional(readOnly = false)
+	public void pedidoRedefinicaoDeSenha(String email) throws MessagingException {
+		Usuario usuario = buscarPorEmailEAtivo(email).orElseThrow(() -> new UsernameNotFoundException("Usuário " + email + " não encontrado."));
+		
+		// gera um valor randômico para o código
+		String verificador = RandomStringUtils.randomAlphanumeric(6);
+		// seta o código na coluna da tabela usuário
+		usuario.setCodigoVerificador(verificador);
+		
+		emailService.enviarPedidoRedefinicaoSenha(email, verificador);
 	}
 }

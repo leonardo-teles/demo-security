@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -116,11 +117,13 @@ public class UsuarioController {
 		return new ModelAndView("redirect:/u/lista");
 	}
 	
+	// abrir página de edição de senha
 	@GetMapping("/editar/senha")
 	public String abrirEditarSenha() {
 		return "usuario/editar-senha";
 	}
 	
+	// editar senha do paciente
 	@PostMapping("/confirmar/senha")
 	public String editarSenha(@RequestParam("senha1") String s1, @RequestParam("senha2") String s2, 
 							  @RequestParam("senha3") String s3, @AuthenticationPrincipal User user,
@@ -179,5 +182,39 @@ public class UsuarioController {
 		attr.addFlashAttribute("subtexto", "Siga com seu login e senha");
 		
 		return "redirect:/login";
+	}
+	
+	// abrir página de pedido de redefinição de senha
+	@GetMapping("/p/redefinir/senha")
+	public String pedidoRedefinirSenha() {
+		return "usuario/pedido-recuperar-senha";
+	}
+	
+	// form de pedido de recuperar senha
+	@GetMapping("/p/recuperar/senha")
+	public String redefinirSenha(String email, ModelMap map) throws MessagingException {
+		service.pedidoRedefinicaoDeSenha(email);
+		map.addAttribute("sucesso", "Em instantes você receberá um e-mail para prosseguir com a redefinição de sua senha.");
+		map.addAttribute("usuario", new Usuario(email));
+		
+		return "usuario/recuperar-senha";
+	}
+	
+	// salvar a nova senha via recuperação de senha
+	@PostMapping("/p/nova/senha")
+	public String confirmacaoDeRedefinicaoDeSenha(Usuario usuario, ModelMap map) {
+		Usuario u = service.buscarPorEmail(usuario.getEmail());
+		if (!usuario.getCodigoVerificador().equals(u.getCodigoVerificador())) {
+			map.addAttribute("falha", "Código verificador não confere.");
+			
+			return "usuario/recuperar-senha";
+		}
+		u.setCodigoVerificador(null);
+		service.alterarSenha(u, usuario.getSenha());
+		map.addAttribute("alerta", "sucesso");
+		map.addAttribute("titulo", "Senha redefinida.");
+		map.addAttribute("texto", "Você já pode logar no sistema.");
+		
+		return "login";
 	}
 }
