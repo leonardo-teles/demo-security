@@ -123,7 +123,7 @@ public class UsuarioService implements UserDetailsService {
 		emailService.enviarPedidoDeConfirmacaoDeCadastro(email, codigo);
 	}
 	
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void ativarCadastroPaciente(String codigo) {
 		String email = new String(Base64Utils.decodeFromString(codigo));
 		Usuario usuario = buscarPorEmail(email);
