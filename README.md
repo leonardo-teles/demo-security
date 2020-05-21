@@ -14,14 +14,18 @@ Tópicos Abordados:
   
 Modo de Utilização:
 
-   - Existem dois usuários pré-cadastrados no sistema: o usuário 'administrador' e o usuário 'médico' que podem acessar o sistema com as seguintes credenciais: email: admin@clinica.com.br - senha: admin | email: medico@clinica.com.br - senha: medico
+   - Existem dois usuários pré-cadastrados no sistema: o usuário **'administrador'** e o usuário **'médico'** que podem acessar o sistema com as seguintes credenciais: email: **admin@clinica.com.br - senha: admin** | email: **medico@clinica.com.br - senha: medico**
    
-   - O administrador tem as seguintes funcionalidades: CRUD de especialidades, cadastro de usuários, edição de credenciais e dados pessoais de médicos e pacientes.
+   - O **administrador** tem as seguintes funcionalidades: CRUD de especialidades, cadastro de usuários, edição de credenciais e dados pessoais de médicos e pacientes.
    
-   - O médico tem as funcionalidades: Inclusão de dados cadastrais, vinculação com uma ou mais especialidades, editar a senha e ver sua consultas de atendimento. Um médico pode editar uma consulta, mas não pode apagá-la. Somente o paciente pode excluir uma consulta.
+   - O **médico** tem as funcionalidades: Inclusão de dados cadastrais, vinculação com uma ou mais especialidades, editar a senha e ver sua consultas de atendimento. Um médico pode editar uma consulta, mas não pode apagá-la. Somente o paciente pode excluir uma consulta.
    
-   - Para testar a aplicação como um paciente, você deverá realizar seu cadastro acessar o botão no topo da página. Utilize um e-mail válido.
+   - Para testar a aplicação como um **paciente**, você deverá realizar seu cadastro acessar o botão no topo da página. Utilize um e-mail válido.
    
-   - Você receberá um e-mail enviado por 'demo.sec.sender@gmail.com' com o título 'Confirmação de Cadastro' e no corpo do e-mail terá um link para confirmar a ativação de sua conta. Ative sua conta e faça login.
+   - Você receberá um e-mail enviado por **'demo.sec.sender@gmail.com'** com o título **'Confirmação de Cadastro'** e no corpo do e-mail terá um link para confirmar a ativação de sua conta. Ative sua conta e faça login.
     
-   - Ao acessar a aplicação, para poder realizar um agendamento, será necessário completar seu registro clicando no menu     
+   - Ao acessar a aplicação, para poder realizar um agendamento, será necessário completar seu registro clicando no menu **'Cadastrar Dados'**. Este passo é obrigatório.    
+   
+   - Na funcionalidade de recuperação de senha, será enviado um e-mail com um código de verificação que deverá ser inserido no formulário de alteração de senha.
+   
+   - O checkbox **'Remember-me'** deixará seu usuário logado na aplicação por duas semanas.
