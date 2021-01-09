@@ -66,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.logout()
 				.logoutSuccessUrl("/")
+				.deleteCookies("JSESSIONID")
 			.and()
 				.exceptionHandling()
 				.accessDeniedPage("/acesso-negado")
