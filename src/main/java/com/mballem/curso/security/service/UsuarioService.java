@@ -37,8 +37,8 @@ public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private Datatables datatables;
 	
-	@Autowired
-	private EmailService emailService;
+	//@Autowired
+	//private EmailService emailService;
 	
 	@Transactional(readOnly = true)
 	public Usuario buscarPorEmail(String email) {
