@@ -14,6 +14,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 @Service
 public class EmailService {
 
+	/*
 	@Autowired
 	private JavaMailSender mailSender;
 	
@@ -61,5 +62,5 @@ public class EmailService {
 		
 		mailSender.send(message);
 	}
-	
+	*/
 }
