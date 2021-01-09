@@ -9,6 +9,7 @@ Tópicos Abordados:
    - Lidar com criptografia de senha
    - Trabalhar com Thymeleaf Extras Security
    - Configurar serviço de e-mail via SMTP
+   - Gerenciando sessões simultâneas
 
   <a href="https://www.udemy.com/certificate/UC-c99e7534-c3e4-4016-a9d8-be96c83b5c14/" rel="noopener">Certificado</a> | <a href="https://my-demo-security.herokuapp.com/">Testar</a>
   
@@ -22,7 +23,11 @@ Modo de Utilização:
    
    - Para testar a aplicação como um **paciente**, você deverá realizar seu cadastro acessar o botão no topo da página. Utilize um e-mail válido.
    
-   - Você receberá um e-mail enviado por **'demo.sec.sender@gmail.com'** com o título **'Confirmação de Cadastro'** e no corpo do e-mail terá um link para confirmar a ativação de sua conta. Ative sua conta e faça login.
+   - No pacote 'util' está disponibilizada uma classe chamada 'GeracaoDeSenha' para facilitar a criação de novas senha criptografadas para testes locais. As senhas do **'administrador'** e **'médico'** foram geradas com este mecanismo utilizando o BCryptPasswordEncoder.
+   
+   - Para que a aplicação funcione corretamente, será necessário configurar um e-mail válido que servirá como emissor de confirmação de cadastro e recuperação de senha.  Esta configuração deverá ser feita no arquivo **application.proterties**
+   
+   - Você receberá um e-mail enviado por **'SEU e-MAIL CADASTRADO@MAIL.COM'** com o título **'Confirmação de Cadastro'** e no corpo do e-mail terá um link para confirmar a ativação de sua conta. Ative sua conta e faça login.
     
    - Ao acessar a aplicação, para poder realizar um agendamento, será necessário completar seu registro clicando no menu **'Cadastrar Dados'**. Este passo é obrigatório.    
    

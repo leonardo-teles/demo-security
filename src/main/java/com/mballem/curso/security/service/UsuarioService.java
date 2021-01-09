@@ -37,8 +37,8 @@ public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private Datatables datatables;
 	
-	//@Autowired
-	//private EmailService emailService;
+	@Autowired
+	private EmailService emailService;
 	
 	@Transactional(readOnly = true)
 	public Usuario buscarPorEmail(String email) {
@@ -121,7 +121,7 @@ public class UsuarioService implements UserDetailsService {
 	
 	public void emailConfirmacaoDeCadastro(String email) throws MessagingException {
 		String codigo = Base64Utils.encodeToString(email.getBytes());
-		//emailService.enviarPedidoDeConfirmacaoDeCadastro(email, codigo);
+		emailService.enviarPedidoDeConfirmacaoDeCadastro(email, codigo);
 	}
 	
 	@Transactional(readOnly = false)
@@ -143,6 +143,6 @@ public class UsuarioService implements UserDetailsService {
 		// seta o código na coluna da tabela usuário
 		usuario.setCodigoVerificador(verificador);
 		
-		//emailService.enviarPedidoRedefinicaoSenha(email, verificador);
+		emailService.enviarPedidoRedefinicaoSenha(email, verificador);
 	}
 }
